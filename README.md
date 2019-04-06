@@ -16,5 +16,12 @@ _Wei (Waley) Zhang (PennKey: wzha)_
     - There's a global directional light and also a point light representing a sun. The sunlight has diffuse shading, high specular reflection, and weak attenuation.
     - The sky is procedurally textured using FBM with a standard noise function with quintic falloff for interpolation.
 
+## Screenshots
+- __In-city view.__
+![](img/side-view.PNG)
+
+- __Birds-eye view.__
+![](img/top-view.PNG)
+
 ## Citations
 I did not use any external resources when implementing this assignment.
