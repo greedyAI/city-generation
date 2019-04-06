@@ -2,16 +2,24 @@
 precision highp float;
 
 uniform vec3 u_Eye, u_Ref, u_Up;
+uniform vec2 u_Dimensions;
+uniform float u_Time;
+uniform int u_MapState;
+uniform sampler2D u_Texture;
 
+in float fs_heightField;
 in vec3 fs_Pos;
 in vec4 fs_Nor;
 in vec4 fs_Col;
 
 out vec4 out_Col;
 
-void main()
-{
-  out_Col = fs_Col;
+void main() {
+  if (fs_heightField > 0.75) {
+    out_Col = vec4(vec3(51.0 / 255.0, 153.0 / 255.0, 255.0 / 255.0) * (2.0 - fs_heightField), 1.0);
+  } else {
+    out_Col = vec4(189.0 / 255.0, 183.0 / 255.0, 107.0 / 255.0, 1.0);
+  }
 
   vec3 sunPos = vec3(0.0, -100.0, 0.0);
 

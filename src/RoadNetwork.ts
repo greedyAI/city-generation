@@ -48,7 +48,7 @@ class RoadNetwork {
     this.streetDensity = streetDensity;
     this.highwayThreshold = highwayThreshold;
 
-    this.highwayDimensions = vec3.fromValues(0.008, 0.2 / this.highwayDensity, 0.0);
+    this.highwayDimensions = vec3.fromValues(0.008, 0.2 / this.highwayDensity, 0.01);
     this.highwayEdges = new Array(Math.ceil(0.4 / this.highwayDimensions[1]) * Math.ceil(0.4 / this.highwayDimensions[1]));
     for (let i: number = 0; i < this.highwayEdges.length; i++) {
       this.highwayEdges[i] = new Array();
@@ -70,7 +70,7 @@ class RoadNetwork {
   createNetwork() {
     let turtles: Turtle[] = [];
     let roadTurtles: Turtle[] = [];
-    let rootCopy: vec3 = vec3.fromValues(this.root[0], this.root[1], 0.999);
+    let rootCopy: vec3 = vec3.fromValues(this.root[0], this.root[1], 0);
     turtles.push(new Turtle(rootCopy, vec3.fromValues(0,1,0), this.highwayDimensions, 0));
     let currentTurtle: Turtle = turtles[0];
     while (currentTurtle != null) {
@@ -174,7 +174,7 @@ class RoadNetwork {
             this.highwayTranslate.push(newTurtle1.position[0] + 0.5 * newTurtle1.scale[1] * newTurtle1.orientation[0], newTurtle1.position[1] + 0.5 * newTurtle1.scale[1] * newTurtle1.orientation[1], 0);
             this.highwayRotate.push(quaternion[0], quaternion[1], quaternion[2], quaternion[3]);
             this.highwayScale.push(newTurtle1.scale[0], newTurtle1.scale[1], newTurtle1.scale[2], 1);
-            this.highwayColor.push(0,0,0,1);
+            this.highwayColor.push(0.25,0.25,0.25,1);
             this.highwayCount += 1
             if (proposedEndpoint != undefined) {
               newEdge = new Edge(vec2.clone(newEdge.start), proposedEndpoint);
@@ -217,7 +217,7 @@ class RoadNetwork {
               this.highwayTranslate.push(newTurtle1.position[0] + newTurtle1.scale[1] * newTurtle1.orientation[0], newTurtle1.position[1] + newTurtle1.scale[1] * newTurtle1.orientation[1], 0);
               this.highwayRotate.push(quaternion[0], quaternion[1], quaternion[2], quaternion[3]);
               this.highwayScale.push(newTurtle1.scale[0], 2 * newTurtle1.scale[1], newTurtle1.scale[2], 1);
-              this.highwayColor.push(0,0,0,1);
+              this.highwayColor.push(0.25,0.25,0.25,1);
               this.highwayCount += 1
               this.highwayEdges[x * k + y].push(newEdge);
               this.streetEdges[x * k + y].push(newEdge);
@@ -333,7 +333,7 @@ class RoadNetwork {
             this.highwayTranslate.push(newTurtle2.position[0] + 0.5 * newTurtle2.scale[1] * newTurtle2.orientation[0], newTurtle2.position[1] + 0.5 * newTurtle2.scale[1] * newTurtle2.orientation[1], 0);
             this.highwayRotate.push(quaternion[0], quaternion[1], quaternion[2], quaternion[3]);
             this.highwayScale.push(newTurtle2.scale[0], newTurtle2.scale[1], newTurtle2.scale[2], 1);
-            this.highwayColor.push(0,0,0,1);
+            this.highwayColor.push(0.25,0.25,0.25,1);
             this.highwayCount += 1
             if (proposedEndpoint != undefined) {
               newEdge = new Edge(vec2.clone(newEdge.start), proposedEndpoint);
@@ -376,7 +376,7 @@ class RoadNetwork {
               this.highwayTranslate.push(newTurtle2.position[0] + newTurtle2.scale[1] * newTurtle2.orientation[0], newTurtle2.position[1] + newTurtle2.scale[1] * newTurtle2.orientation[1], 0);
               this.highwayRotate.push(quaternion[0], quaternion[1], quaternion[2], quaternion[3]);
               this.highwayScale.push(newTurtle2.scale[0], 2 * newTurtle2.scale[1], newTurtle2.scale[2], 1);
-              this.highwayColor.push(0,0,0,1);
+              this.highwayColor.push(0.25,0.25,0.25,1);
               this.highwayCount += 1
               this.highwayEdges[x * k + y].push(newEdge);
               this.streetEdges[x * k + y].push(newEdge);
@@ -478,7 +478,7 @@ class RoadNetwork {
             this.streetTranslate.push(newTurtle3.position[0] + 0.5 * newTurtle3.scale[1] * newTurtle3.streetScale * newTurtle3.orientation[0], newTurtle3.position[1] + 0.5 * newTurtle3.scale[1] * newTurtle3.streetScale * newTurtle3.orientation[1], 0);
             this.streetRotate.push(quaternion[0], quaternion[1], quaternion[2], quaternion[3]);
             this.streetScale.push(newTurtle3.scale[0] * newTurtle3.streetScale, newTurtle3.scale[1] * newTurtle3.streetScale, newTurtle3.scale[2] * newTurtle3.streetScale, 1);
-            this.streetColor.push(0,0,0,1);
+            this.streetColor.push(0.25,0.25,0.25,1);
             this.streetCount += 1
             if (proposedEndpoint != undefined) {
               newEdge = new Edge(vec2.clone(newEdge.start), proposedEndpoint);
@@ -589,7 +589,7 @@ class RoadNetwork {
             this.streetTranslate.push(newTurtle4.position[0] + 0.5 * newTurtle4.scale[1] * newTurtle4.streetScale * newTurtle4.orientation[0], newTurtle4.position[1] + 0.5 * newTurtle4.scale[1] * newTurtle4.streetScale * newTurtle4.orientation[1], 0);
             this.streetRotate.push(quaternion[0], quaternion[1], quaternion[2], quaternion[3]);
             this.streetScale.push(newTurtle4.scale[0] * newTurtle4.streetScale, newTurtle4.scale[1] * newTurtle4.streetScale, newTurtle4.scale[2] * newTurtle4.streetScale, 1);
-            this.streetColor.push(0,0,0,1);
+            this.streetColor.push(0.25,0.25,0.25,1);
             this.streetCount += 1
             if (proposedEndpoint != undefined) {
               newEdge = new Edge(vec2.clone(newEdge.start), proposedEndpoint);
@@ -700,7 +700,7 @@ class RoadNetwork {
           this.highwayTranslate.push(currentTurtle.position[0] + 0.5 * currentTurtle.scale[1] * currentTurtle.orientation[0], currentTurtle.position[1] + 0.5 * currentTurtle.scale[1] * currentTurtle.orientation[1], 0);
           this.highwayRotate.push(quaternion[0], quaternion[1], quaternion[2], quaternion[3]);
           this.highwayScale.push(currentTurtle.scale[0], currentTurtle.scale[1], currentTurtle.scale[2], 1);
-          this.highwayColor.push(0,0,0,1);
+          this.highwayColor.push(0.25,0.25,0.25,1);
           this.highwayCount += 1
           if (proposedEndpoint != undefined) {
             newEdge = new Edge(vec2.clone(newEdge.start), proposedEndpoint);
@@ -745,7 +745,7 @@ class RoadNetwork {
             this.highwayTranslate.push(currentTurtle.position[0] + currentTurtle.scale[1] * currentTurtle.orientation[0], currentTurtle.position[1] + currentTurtle.scale[1] * currentTurtle.orientation[1], 0);
             this.highwayRotate.push(quaternion[0], quaternion[1], quaternion[2], quaternion[3]);
             this.highwayScale.push(currentTurtle.scale[0], 2 * currentTurtle.scale[1], currentTurtle.scale[2], 1);
-            this.highwayColor.push(0,0,0,1);
+            this.highwayColor.push(0.25,0.25,0.25,1);
             this.highwayCount += 1
             this.highwayEdges[x * k + y].push(newEdge);
             this.streetEdges[x * k + y].push(newEdge);
@@ -855,7 +855,7 @@ class RoadNetwork {
             this.streetTranslate.push(newTurtle3.position[0] + 0.5 * newTurtle3.scale[1] * newTurtle3.streetScale * newTurtle3.orientation[0], newTurtle3.position[1] + 0.5 * newTurtle3.scale[1] * newTurtle3.streetScale * newTurtle3.orientation[1], 0);
             this.streetRotate.push(quaternion[0], quaternion[1], quaternion[2], quaternion[3]);
             this.streetScale.push(newTurtle3.scale[0] * newTurtle3.streetScale, newTurtle3.scale[1] * newTurtle3.streetScale, newTurtle3.scale[2] * newTurtle3.streetScale, 1);
-            this.streetColor.push(0,0,0,1);
+            this.streetColor.push(0.25,0.25,0.25,1);
             this.streetCount += 1
             if (proposedEndpoint != undefined) {
               newEdge = new Edge(vec2.clone(newEdge.start), proposedEndpoint);
@@ -966,7 +966,7 @@ class RoadNetwork {
             this.streetTranslate.push(newTurtle4.position[0] + 0.5 * newTurtle4.scale[1] * newTurtle4.streetScale * newTurtle4.orientation[0], newTurtle4.position[1] + 0.5 * newTurtle4.scale[1] * newTurtle4.streetScale * newTurtle4.orientation[1], 0);
             this.streetRotate.push(quaternion[0], quaternion[1], quaternion[2], quaternion[3]);
             this.streetScale.push(newTurtle4.scale[0] * newTurtle4.streetScale, newTurtle4.scale[1] * newTurtle4.streetScale, newTurtle4.scale[2] * newTurtle4.streetScale, 1);
-            this.streetColor.push(0,0,0,1);
+            this.streetColor.push(0.25,0.25,0.25,1);
             this.streetCount += 1
             if (proposedEndpoint != undefined) {
               newEdge = new Edge(vec2.clone(newEdge.start), proposedEndpoint);
@@ -1077,7 +1077,7 @@ class RoadNetwork {
           this.streetTranslate.push(currentTurtle.position[0] + 0.5 * currentTurtle.scale[1] * currentTurtle.streetScale * currentTurtle.orientation[0], currentTurtle.position[1] + 0.5 * currentTurtle.scale[1] * currentTurtle.streetScale * currentTurtle.orientation[1], 0);
           this.streetRotate.push(quaternion[0], quaternion[1], quaternion[2], quaternion[3]);
           this.streetScale.push(currentTurtle.scale[0] * currentTurtle.streetScale, currentTurtle.scale[1] * currentTurtle.streetScale, currentTurtle.scale[2] * currentTurtle.streetScale, 1);
-          this.streetColor.push(0,0,0,1);
+          this.streetColor.push(0.25,0.25,0.25,1);
           this.streetCount += 1
           if (proposedEndpoint != undefined) {
             newEdge = new Edge(vec2.clone(newEdge.start), proposedEndpoint);
@@ -1163,6 +1163,18 @@ class Edge {
     }
     return vec2.fromValues(x, y);
   }
+
+  sqDistToPoint(p: vec2) {
+    var length = (this.start[0] - this.target[0]) * (this.start[0] - this.target[0]) + (this.start[1] - this.target[1]) * (this.start[1] - this.target[1]);
+    if (length == 0) {
+      return (this.start[0] - p[0]) * (this.start[0] - p[0]) + (this.start[1] - p[1]) * (this.start[1] - p[1]);
+    }
+    var t = ((p[0] - this.start[0]) * (this.target[0] - this.start[0]) + (p[1] - this.start[1]) * (this.target[1] - this.start[1])) / length;
+    t = Math.max(0, Math.min(1, t));
+    var x1 = this.start[0] + t * (this.target[0] - this.start[0]);
+    var y1 = this.start[1] + t * (this.target[1] - this.start[1]);
+    return (x1 - p[0]) * (x1 - p[0]) + (y1 - p[1]) * (y1 - p[1]);
+  }
 }
 
-export default RoadNetwork;
+export {RoadNetwork, Edge};
